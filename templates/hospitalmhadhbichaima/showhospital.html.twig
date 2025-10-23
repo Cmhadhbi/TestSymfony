@@ -1,0 +1,19 @@
+
+<table border="3">
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>NbrCh</td>
+        <td>Delete</td>
+    </tr>
+
+    {% for i in showHospital %}
+    <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.nom}}</td>
+        <td>{{i.nbrch}}</td>
+        <td><a href="{{path('app_deleteHospitalmhadhbichaima',{'id':i.id})}}">Delete</a></td>
+       
+        </tr>
+    {% endfor %}
+</table>

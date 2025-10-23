@@ -1,0 +1,25 @@
+<table border="3">
+    <tr>
+        <td>ID</td>
+        <td>numch</td>
+        <td>Patient / NbrCh</td>
+        <td>Update</td>
+        <td>Details</td>
+    </tr>
+
+    {# support both a single entity and a collection #}
+    {% set items = showroom is iterable ? showroom : [showroom] %}
+
+    {% for i in items %}
+    <tr>
+        <td>{{ i.id }}</td>
+        <td>{{ i.numch }}</td>
+        {# try common property names; adjust to your entity getters if different #}
+        <td>{{ attribute(i, 'patient') ?? attribute(i, 'nbrCh') ?? '' }}</td>
+        <td><a href="{{ path('app_updateformroom', {'id': i.id}) }}">Update</a></td>
+        <td><a href="{{ path('app_showdetails', {'id': i.id}) }}">Details</a></td>
+    </tr>
+    {% else %}
+    <tr><td colspan="5">No items found.</td></tr>
+    {% endfor %}
+</table>
